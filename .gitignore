@@ -1,0 +1,4 @@
+/BUILD
+**/.hg
+**/.lock
+/mbed-os
