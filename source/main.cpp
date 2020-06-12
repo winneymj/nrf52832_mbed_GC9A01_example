@@ -796,7 +796,7 @@ lv_point_t pointFromPolar(lv_area_t &bounds, int angleInDegrees) {
 
 static lv_design_cb_t old_btn_design;
 
-lv_area_t bounds_inset(const lv_area_t &bounds, const int offset) {
+lv_area_t bounds_inset(const lv_area_t &bounds, const lv_coord_t offset) {
   lv_area_t retVal = {bounds.x1 + offset, bounds.y1 + offset, bounds.x2 - offset, bounds.y2 - offset};
   return retVal;
 }
