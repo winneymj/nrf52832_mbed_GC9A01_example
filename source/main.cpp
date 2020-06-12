@@ -19,7 +19,7 @@
 #include <mbed.h>
 #include <PinNames.h>
 #include <lvgl/lvgl.h>
-#include <lv_drivers/display/ST7789.h>
+#include <lv_drivers/display/GC9A01.h>
 
 #define LVGL_TICK 5
 #define TICKER_TIME 0.001 * LVGL_TICK
@@ -698,7 +698,7 @@ void my_disp_flush(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_col
     int32_t x, y;
     for(y = area->y1; y <= area->y2; y++) {
         for(x = area->x1; x <= area->x2; x++) {
-            st7789_drawPixel(x, y, 0xFFFF /*color_p->full*/);  /* Put a pixel to the display.*/
+            GC9A01_drawPixel(x, y, 0xFFFF /*color_p->full*/);  /* Put a pixel to the display.*/
             color_p++;
         }
     }
@@ -801,9 +801,9 @@ lv_area_t bounds_inset(const lv_area_t &bounds, const int offset) {
   return retVal;
 }
 
-lv_area_t layer_get_bounds(const lv_obj_t &obj) {
+lv_area_t layer_get_bounds(const lv_obj_t *obj) {
   lv_area_t cords_p;
-  lv_obj_get_coords(&obj, &cords_p);
+  lv_obj_get_coords(obj, &cords_p);
   return cords_p;
 }
 
@@ -913,14 +913,14 @@ int main()
   _led1 = 0;
   printf("\r\n main: ENTER \r\n\r\n");
 
-  st7789_init();
-  st7789_init();
+  GC9A01_init();
+  GC9A01_init();
 
-  // Initalize the display driver st7789
-  // st7789_init();
+  // Initalize the display driver GC9A01
+  // GC9A01_init();
   // display.init();
 
-  printf("main: st7789_init() done\r\n");
+  printf("main: GC9A01_init() done\r\n");
 
   lv_init();
   printf("main: lv_init() done\r\n");
@@ -931,7 +931,7 @@ int main()
 
   lv_disp_drv_t disp_drv;
   lv_disp_drv_init(&disp_drv);
-  disp_drv.flush_cb = st7789_flush;
+  disp_drv.flush_cb = GC9A01_flush;
   // disp_drv.flush_cb = my_disp_flush;
   disp_drv.buffer = &disp_buf;
   lv_disp_drv_register(&disp_drv);

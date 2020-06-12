@@ -185,7 +185,7 @@
  *  ST7789 (color, low res.)
  *-----------------------------*/
 #ifndef USE_ST7789
-#  define USE_ST7789          1
+#  define USE_ST7789          0
 #endif
 
 #if USE_ST7789
@@ -209,6 +209,35 @@
 #  define ST7789_SPI_BAUD        8000000 /*8 MHz max on nrf52832*/
 #  define ST7789_LV_COLOR_DEPTH  16      /*Fix 16 bit*/
 #endif  /*USE_ST7789*/
+
+/*------------------------------
+ *  GC9A01 (color, low res.)
+ *-----------------------------*/
+#ifndef USE_GC9A01
+#  define USE_GC9A01          1
+#endif
+
+#if USE_GC9A01
+#  define GC9A01_HOR_RES      LV_HOR_RES
+#  define GC9A01_VER_RES      LV_VER_RES
+#  define GC9A01_XSTART          0
+#  define GC9A01_YSTART          40
+// #  define R61581_HSPL         0       /*HSYNC signal polarity*/
+// #  define R61581_HSL          10      /*HSYNC length (Not Implemented)*/
+// #  define R61581_HFP          10      /*Horitontal Front poarch (Not Implemented)*/
+// #  define R61581_HBP          10      /*Horitontal Back poarch (Not Implemented */
+// #  define R61581_VSPL         0       /*VSYNC signal polarity*/
+// #  define R61581_VSL          10      /*VSYNC length (Not Implemented)*/
+// #  define R61581_VFP          8       /*Vertical Front poarch*/
+// #  define R61581_VBP          8       /*Vertical Back poarch */
+// #  define R61581_DPL          0       /*DCLK signal polarity*/
+// #  define R61581_EPL          1       /*ENABLE signal polarity*/
+// #  define R61581_ORI          0       /*0, 180*/
+#  define GC9A01_SPI_BITS        9       /*8 Bit*/
+#  define GC9A01_SPI_MODE        2       /*Mode 2*/
+#  define GC9A01_SPI_BAUD        8000000 /*8 MHz max on nrf52832*/
+#  define GC9A01_LV_COLOR_DEPTH  16      /*Fix 16 bit*/
+#endif  /*USE_GC9A01*/
 
 /*------------------------------------------
  *  UC1610 (4 gray 160*[104|128])
