@@ -233,10 +233,12 @@
 // #  define R61581_DPL          0       /*DCLK signal polarity*/
 // #  define R61581_EPL          1       /*ENABLE signal polarity*/
 // #  define R61581_ORI          0       /*0, 180*/
-#  define GC9A01_SPI_BITS        9       /*8 Bit*/
-#  define GC9A01_SPI_MODE        2       /*Mode 2*/
-#  define GC9A01_SPI_BAUD        8000000 /*8 MHz max on nrf52832*/
-#  define GC9A01_LV_COLOR_DEPTH  16      /*Fix 16 bit*/
+// #  define GC9A01_SPI_BITS        9       /*9 Bit*/
+#  define GC9A01_SPI_BITS        8       // 8 Bit*/
+#  define GC9A01_SPI_EXT_CS      0       // 1 = Use CS external to SPI, 0 = CS board managed SPI
+#  define GC9A01_SPI_MODE        2       // Mode 2
+#  define GC9A01_SPI_BAUD        8000000 // 8 MHz max on nrf52832
+#  define GC9A01_LV_COLOR_DEPTH  16      // Fix 16 bit
 #endif  /*USE_GC9A01*/
 
 /*------------------------------------------

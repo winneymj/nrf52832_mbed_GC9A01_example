@@ -5,6 +5,7 @@
         "xstring": "cpp",
         "xutility": "cpp",
         "stdbool.h": "c",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "ostream": "cpp"
     }
 }

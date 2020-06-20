@@ -17,7 +17,6 @@
 #include <stdint.h>
 #include <events/mbed_events.h>
 #include <mbed.h>
-#include <PinNames.h>
 #include <lvgl/lvgl.h>
 #include <lv_drivers/display/GC9A01.h>
 
