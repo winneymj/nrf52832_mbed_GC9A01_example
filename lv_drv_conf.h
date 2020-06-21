@@ -221,7 +221,7 @@
 #  define GC9A01_HOR_RES      LV_HOR_RES
 #  define GC9A01_VER_RES      LV_VER_RES
 #  define GC9A01_XSTART          0
-#  define GC9A01_YSTART          40
+#  define GC9A01_YSTART          0
 // #  define R61581_HSPL         0       /*HSYNC signal polarity*/
 // #  define R61581_HSL          10      /*HSYNC length (Not Implemented)*/
 // #  define R61581_HFP          10      /*Horitontal Front poarch (Not Implemented)*/

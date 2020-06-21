@@ -912,33 +912,28 @@ int main()
   _led1 = 0;
   printf("\r\n main: ENTER \r\n\r\n");
 
-  GC9A01_init();
-  GC9A01_init();
-
   // Initalize the display driver GC9A01
-  // GC9A01_init();
-  // display.init();
+  GC9A01_init();
 
   printf("main: GC9A01_init() done\r\n");
 
-  lv_init();
-  printf("main: lv_init() done\r\n");
-  static lv_disp_buf_t disp_buf;
-  static lv_color_t buf[LV_HOR_RES_MAX * 6];
-  lv_disp_buf_init(&disp_buf, buf, NULL, LV_HOR_RES_MAX * 6);
-  printf("main: lv_disp_buf_init() done\r\n");
+  // lv_init();
+  // printf("main: lv_init() done\r\n");
+  // static lv_disp_buf_t disp_buf;
+  // static lv_color_t buf[LV_HOR_RES_MAX * 6];
+  // lv_disp_buf_init(&disp_buf, buf, NULL, LV_HOR_RES_MAX * 6);
+  // printf("main: lv_disp_buf_init() done\r\n");
 
-  lv_disp_drv_t disp_drv;
-  lv_disp_drv_init(&disp_drv);
-  disp_drv.flush_cb = GC9A01_flush;
-  // disp_drv.flush_cb = my_disp_flush;
-  disp_drv.buffer = &disp_buf;
-  lv_disp_drv_register(&disp_drv);
-  printf("main: lv_disp_drv_register() done\r\n");
+  // lv_disp_drv_t disp_drv;
+  // lv_disp_drv_init(&disp_drv);
+  // disp_drv.flush_cb = GC9A01_flush;
+  // disp_drv.buffer = &disp_buf;
+  // lv_disp_drv_register(&disp_drv);
+  // printf("main: lv_disp_drv_register() done\r\n");
 
-  ticker.attach(callback(&lvl_ticker_func), TICKER_TIME);
+  // ticker.attach(callback(&lvl_ticker_func), TICKER_TIME);
 
-  printf("main: ticker.attach() done\r\n");
+  // printf("main: ticker.attach() done\r\n");
   events::EventQueue queue;
 
 #define WHITE_COLOUR 0xFFFF
@@ -948,26 +943,28 @@ int main()
 #define BLUE_COLOUR  0x001F
 #define XXXX_COLOUR  0x0A0A
 
-  pebble_circle_watchface();
+  // pebble_circle_watchface();
+
   // lv_ex_arc_1();
   // lv_ex_line_1();
   // lv_ex_ta_1();
   // lv_ex_page_1();
-  // while (true) {
-  //   st7789_drawPixel(120, 200, 0xFFFF);
-  //   st7789_drawPixel(120, 30, 0xFFFF);
-  //   st7789_drawFastHLine(0, 120, 239, 0xFFFF);
-  //   wait_ms(1000); // Pause for 1 seconds
-  //   st7789_fillRect(40, 40, 100, 50, XXXX_COLOUR);
-  //   wait_ms(1000); // Pause for 1 seconds
-  //   st7789_fillRect(40, 40, 100, 50, WHITE_COLOUR);
-  //   wait_ms(1000); // Pause for 1 seconds
-  //   st7789_fillRect(40, 40, 100, 50, RED_COLOUR);
-  //   wait_ms(1000); // Pause for 1 seconds
-  //   st7789_fillRect(40, 40, 100, 50, GREEN_COLOUR);
-  //   wait_ms(1000); // Pause for 1 seconds
-  //   st7789_fillRect(40, 40, 100, 50, BLUE_COLOUR);
-  // }
+  while (true) {
+    printf("main: GC9A01_drawPixel\r\n");
+    GC9A01_drawPixel(120, 200, 0xFFFF);
+    GC9A01_drawPixel(120, 30, 0xFFFF);
+    GC9A01_drawFastHLine(0, 120, 239, 0xFFFF);
+    wait_ms(1000); // Pause for 1 seconds
+    GC9A01_fillRect(40, 40, 100, 50, XXXX_COLOUR);
+    wait_ms(1000); // Pause for 1 seconds
+    GC9A01_fillRect(40, 40, 100, 50, WHITE_COLOUR);
+    wait_ms(1000); // Pause for 1 seconds
+    GC9A01_fillRect(40, 40, 100, 50, RED_COLOUR);
+    wait_ms(1000); // Pause for 1 seconds
+    GC9A01_fillRect(40, 40, 100, 50, GREEN_COLOUR);
+    wait_ms(1000); // Pause for 1 seconds
+    GC9A01_fillRect(40, 40, 100, 50, BLUE_COLOUR);
+  }
 
   // printf("main: 1\r\n");
   // _led1 = 1;
