@@ -807,6 +807,13 @@ lv_area_t layer_get_bounds(const lv_obj_t *obj) {
 }
 
 void pebble_circle_watchface(void) {
+  // Fill background with blue
+  static lv_style_t style_screen;
+  lv_style_copy(&style_screen, &lv_style_plain);
+  style_screen.body.main_color = LV_COLOR_BLUE;
+  style_screen.body.grad_color = LV_COLOR_BLUE;  // Comment this out to get a graduated blue->white
+  lv_obj_set_style(lv_scr_act(), &style_screen);
+
   // Get bounds
   lv_area_t bounds = layer_get_bounds(lv_scr_act());
 
@@ -820,8 +827,9 @@ void pebble_circle_watchface(void) {
   /*Create style for the Arcs*/
   static lv_style_t style;
   lv_style_copy(&style, &lv_style_plain);
-  style.line.color = LV_COLOR_BLUE;           /*Arc color*/
+  style.line.color = LV_COLOR_MAKE(0x88, 0x8A, 0xD3); /*Arc color These are 888 numbers */
   style.line.width = 20;                       /*Arc width*/
+  printf("style.line.color.full=0x%hx\r\n", style.line.color.full);
 
   /*Create an Arc*/
   lv_obj_t * arc = lv_arc_create(lv_scr_act(), NULL);
