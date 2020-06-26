@@ -687,13 +687,13 @@ void lvl_ticker_func()
 
   //Call lv_task_handler() periodically every few milliseconds. 
   //It will redraw the screen if required, handle input devices etc.  
-  lv_task_handler();
+  // lv_task_handler();
 }
 
 void my_disp_flush(struct _disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
 {
-  _led1 = !_led1;
-  // printf("flushing,x=%d->%d,%d->%d,0x%X\r\n", area->x1, area->x2, area->y1, area->y2, color_p->full);
+  // _led1 = !_led1;
+  printf("flushing,x=%d->%d,%d->%d,0x%X\r\n", area->x1, area->x2, area->y1, area->y2, color_p->full);
     int32_t x, y;
     for(y = area->y1; y <= area->y2; y++) {
         for(x = area->x1; x <= area->x2; x++) {
@@ -907,6 +907,13 @@ void lv_ex_page_1(void)
                              "wonder how well it works?");
 }
 
+void eventcb() {
+  // printf("eventcb()\r\n");
+  //Call lv_task_handler() periodically every few milliseconds. 
+  //It will redraw the screen if required, handle input devices etc.  
+  lv_task_handler();
+}
+
 int main()
 {
   _led1 = 0;
@@ -917,54 +924,61 @@ int main()
 
   printf("main: GC9A01_init() done\r\n");
 
-  // lv_init();
-  // printf("main: lv_init() done\r\n");
-  // static lv_disp_buf_t disp_buf;
-  // static lv_color_t buf[LV_HOR_RES_MAX * 6];
-  // lv_disp_buf_init(&disp_buf, buf, NULL, LV_HOR_RES_MAX * 6);
-  // printf("main: lv_disp_buf_init() done\r\n");
+  lv_init();
 
-  // lv_disp_drv_t disp_drv;
-  // lv_disp_drv_init(&disp_drv);
-  // disp_drv.flush_cb = GC9A01_flush;
-  // disp_drv.buffer = &disp_buf;
-  // lv_disp_drv_register(&disp_drv);
-  // printf("main: lv_disp_drv_register() done\r\n");
+  printf("main: lv_init() done\r\n");
+  static lv_disp_buf_t disp_buf;
+  static lv_color_t buf[LV_HOR_RES_MAX * 5];
+  lv_disp_buf_init(&disp_buf, buf, NULL, LV_HOR_RES_MAX * 5);
+  printf("main: lv_disp_buf_init() done\r\n");
 
-  // ticker.attach(callback(&lvl_ticker_func), TICKER_TIME);
+  lv_disp_drv_t disp_drv;
+  lv_disp_drv_init(&disp_drv);
+  disp_drv.flush_cb = GC9A01_flush;
+  disp_drv.buffer = &disp_buf;
+  lv_disp_drv_register(&disp_drv);
 
-  // printf("main: ticker.attach() done\r\n");
+	// GC9A01_fillScreen(WHITE_COLOUR);
+
+  printf("main: lv_disp_drv_register() done\r\n");
+
+  ticker.attach(callback(&lvl_ticker_func), TICKER_TIME);
+
+	printf("main: ticker.attach() done\r\n");
   events::EventQueue queue;
 
-#define WHITE_COLOUR 0xFFFF
-#define BLACK_COLOUR 0x0000
-#define RED_COLOUR   0xF800
-#define GREEN_COLOUR 0x07E0
-#define BLUE_COLOUR  0x001F
-#define XXXX_COLOUR  0x0A0A
 
-  // pebble_circle_watchface();
+  queue.call_every(10, callback(&eventcb));
+
+  // GC9A01_drawFastHLine(0, 120, 239, BLACK_COLOUR);
+  // GC9A01_drawFastVLine(120, 0, 239, BLACK_COLOUR);
+  // GC9A01_drawFastVLine(110, 110, 10, BLACK_COLOUR);
+  // GC9A01_drawFastHLine(130, 130, 50, BLACK_COLOUR);
+  // GC9A01_drawPixel(50, 100, BLACK_COLOUR);
+  // GC9A01_fillRect(100, 100, 1, 1, BLACK_COLOUR);
+
+  pebble_circle_watchface();
 
   // lv_ex_arc_1();
   // lv_ex_line_1();
   // lv_ex_ta_1();
   // lv_ex_page_1();
-  while (true) {
-    printf("main: GC9A01_drawPixel\r\n");
-    GC9A01_drawPixel(120, 200, 0xFFFF);
-    GC9A01_drawPixel(120, 30, 0xFFFF);
-    GC9A01_drawFastHLine(0, 120, 239, 0xFFFF);
-    wait_ms(1000); // Pause for 1 seconds
-    GC9A01_fillRect(40, 40, 100, 50, XXXX_COLOUR);
-    wait_ms(1000); // Pause for 1 seconds
-    GC9A01_fillRect(40, 40, 100, 50, WHITE_COLOUR);
-    wait_ms(1000); // Pause for 1 seconds
-    GC9A01_fillRect(40, 40, 100, 50, RED_COLOUR);
-    wait_ms(1000); // Pause for 1 seconds
-    GC9A01_fillRect(40, 40, 100, 50, GREEN_COLOUR);
-    wait_ms(1000); // Pause for 1 seconds
-    GC9A01_fillRect(40, 40, 100, 50, BLUE_COLOUR);
-  }
+  // while (true) {
+  //   printf("main: GC9A01_drawPixel\r\n");
+  //   GC9A01_drawPixel(120, 200, 0xFFFF);
+  //   GC9A01_drawPixel(120, 30, 0xFFFF);
+  //   GC9A01_drawFastHLine(0, 120, 239, 0xFFFF);
+  //   wait_ms(1000); // Pause for 1 seconds
+  //   GC9A01_fillRect(40, 40, 100, 50, XXXX_COLOUR);
+  //   wait_ms(1000); // Pause for 1 seconds
+  //   GC9A01_fillRect(40, 40, 100, 50, WHITE_COLOUR);
+  //   wait_ms(1000); // Pause for 1 seconds
+  //   GC9A01_fillRect(40, 40, 100, 50, RED_COLOUR);
+  //   wait_ms(1000); // Pause for 1 seconds
+  //   GC9A01_fillRect(40, 40, 100, 50, GREEN_COLOUR);
+  //   wait_ms(1000); // Pause for 1 seconds
+  //   GC9A01_fillRect(40, 40, 100, 50, BLUE_COLOUR);
+  // }
 
   // printf("main: 1\r\n");
   // _led1 = 1;
