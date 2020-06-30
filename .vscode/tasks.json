@@ -30,19 +30,44 @@
                 "isDefault": true
             },
             "command": "mbed",
-            "args": ["compile", "--profile=release", "-v", "-t", "GCC_ARM", "-m", "NRF52832_MDK", "--flash"]
+            "args": [
+                "compile",
+                "--profile=release",
+                "-v",
+                "-t",
+                "GCC_ARM",
+                "-m",
+                "NRF52840_MDK",
+                "--flash"
+            ]
         },
         {
             "label": "compile debug",
             "group": "build",
             "command": "mbed",
-            "args": ["compile", "--profile=debug", "-t", "GCC_ARM", "-m", "NRF52832_MDK", "--flash"]
+            "args": [
+                "compile",
+                "--profile=debug",
+                "-t",
+                "GCC_ARM",
+                "-m",
+                "NRF52840_MDK",
+                "--flash"
+            ]
         },
         {
             "label": "compile develop",
             "group": "build",
             "command": "mbed",
-            "args": ["compile", "--profile=develop", "-t", "GCC_ARM", "-m", "NRF52832_MDK", "--flash"]
+            "args": [
+                "compile",
+                "--profile=develop",
+                "-t",
+                "GCC_ARM",
+                "-m",
+                "NRF52840_MDK",
+                "--flash"
+            ]
         }
     ]
 }
@@ -69,7 +94,7 @@
 //             "message": 5
 //         }
 //     },
-//     "args": ["compile", "--profile=debug", "-t", "GCC_ARM", "-m", "NRF52832_MDK"],
+//     "args": ["compile", "--profile=debug", "-t", "GCC_ARM", "-m", "NRF52840_MDK"],
 //     "windows": {
 //         "command": "mbed.exe"
 //     }
@@ -98,7 +123,7 @@
 //                 "panel": "shared"
 //             },
 //             // arg passing example: in this case is executed make QUIET=0
-//             "args": ["compile", "--profile=debug", "-t", "GCC_ARM", "-m", "NRF52832_MDK"],
+//             "args": ["compile", "--profile=debug", "-t", "GCC_ARM", "-m", "NRF52840_MDK"],
 //             // Use the standard less compilation problem matcher.
 //             "problemMatcher": {
 //                 "owner": "cpp",
