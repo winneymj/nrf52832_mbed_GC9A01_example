@@ -829,7 +829,6 @@ void pebble_circle_watchface(void) {
   lv_style_copy(&style, &lv_style_plain);
   style.line.color = LV_COLOR_MAKE(0x88, 0x8A, 0xD3); /*Arc color These are 888 numbers */
   style.line.width = 20;                       /*Arc width*/
-  printf("style.line.color.full=0x%hx\r\n", style.line.color.full);
 
   /*Create an Arc*/
   lv_obj_t * arc = lv_arc_create(lv_scr_act(), NULL);
@@ -936,8 +935,8 @@ int main()
 
   printf("main: lv_init() done\r\n");
   static lv_disp_buf_t disp_buf;
-  static lv_color_t buf[LV_HOR_RES_MAX * 5];
-  lv_disp_buf_init(&disp_buf, buf, NULL, LV_HOR_RES_MAX * 5);
+  static lv_color_t buf[LV_HOR_RES_MAX * 6];
+  lv_disp_buf_init(&disp_buf, buf, NULL, LV_HOR_RES_MAX * 6);
   printf("main: lv_disp_buf_init() done\r\n");
 
   lv_disp_drv_t disp_drv;
